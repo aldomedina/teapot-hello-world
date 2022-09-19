@@ -29,11 +29,14 @@ form.addEventListener("submit", (event) => {
 });
 
 const uiCheckbox = document.querySelector("#ui") as HTMLInputElement;
+const cameraDOM = document.querySelector(".camera") as HTMLDivElement;
 const handleUIChange = (e: Event) => {
   if (uiCheckbox.checked) {
     form.style.opacity = "1";
+    cameraDOM.style.opacity = "1";
   } else {
     form.style.opacity = "0";
+    cameraDOM.style.opacity = "0";
   }
 };
 uiCheckbox.addEventListener("change", (e) => handleUIChange(e));
