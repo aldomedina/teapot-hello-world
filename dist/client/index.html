@@ -53,6 +53,15 @@
       .inputWrapper:hover {
         opacity: 1;
       }
+      .camera {
+        position: fixed;
+        bottom: 5px;
+        right: 5px;
+        display: flex;
+        gap: 2rem;
+        padding: 5px;
+        transition: opacity 0.1s ease-in;
+      }
     </style>
   </head>
   <body>
@@ -113,6 +122,20 @@
       <div class="inputWrapper">
         <label for="ui">UI</label>
         <input id="ui" type="checkbox" checked="true" />
+      </div>
+    </div>
+    <div class="camera">
+      <div>
+        <h4>POSITION</h4>
+        <div>x: <input disabled type="number" id="px" value="0" /></div>
+        <div>y: <input disabled type="number" id="py" value="0" /></div>
+        <div>z: <input disabled type="number" id="pz" value="0" /></div>
+      </div>
+      <div>
+        <h4>TARGET</h4>
+        <div>x: <input disabled type="number" id="tx" value="0" /></div>
+        <div>y: <input disabled type="number" id="ty" value="0" /></div>
+        <div>z: <input disabled type="number" id="tz" value="0" /></div>
       </div>
     </div>
     <script>

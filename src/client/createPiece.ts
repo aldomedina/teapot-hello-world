@@ -5,6 +5,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import createColorlinesMaterial from "./components/createColorlinesMaterial";
 import createTwistedMaterial from "./components/createTwistedMaterial";
 import { TConfig, TTexture } from "./types";
+import handleCameraListener from "./utils/handleCameraListener";
 
 export default function createPiece(
   config: TConfig,
@@ -62,6 +63,7 @@ export default function createPiece(
 
   // Render scene
   function animate() {
+    handleCameraListener(controls);
     requestAnimationFrame(animate);
     render();
   }
