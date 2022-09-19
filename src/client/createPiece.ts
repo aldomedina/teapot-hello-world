@@ -13,7 +13,7 @@ export default function createPiece(
   stripes: number,
   bgColor: string
 ) {
-  // Scene settings
+  // THREE SCENE
   const sideSize = Math.min(window.innerHeight, window.innerWidth);
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(config.fov, 1, 1, 10000);
@@ -24,22 +24,30 @@ export default function createPiece(
   renderer.setPixelRatio(window.devicePixelRatio);
   document.body.appendChild(renderer.domElement);
   const canvasDOM = document.getElementsByTagName("canvas")[0];
-  canvasDOM.style.boxSizing = "border-box";
   canvasDOM.style.margin = "0 auto";
-  canvasDOM.style.backgroundColor = config.backgroundColor;
-  // if (bgColor === "random") {
-  //   canvasDOM.style.backgroundImage =
-  //     "radial-gradient(circle, rgba(255,255,255,.9) 0%, rgba(0,0,0,0) 100%)";
-  // } else {
-  //   canvasDOM.style.backgroundImage =
-  //     "radial-gradient(circle, rgba(255,255,255,1) 50%, rgba(176,174,174,1)  100%)";
-  // }
 
+  // BORDER
+  // canvasDOM.style.boxSizing = "border-box";
   // canvasDOM.style.border = "solid 4vh #EB0A60";
   // canvasDOM.style.backgroundImage =
   //   "radial-gradient( #FBF0BF, #FBF0BF,#EB7B3B)";
 
-  // Create Teapot
+  // BG
+  switch (bgColor) {
+    case "white-gradient":
+      canvasDOM.style.backgroundImage =
+        "radial-gradient(circle, rgba(255,255,255,1) 50%, rgba(210,210,210,1)  100%)";
+      break;
+    case "random-gradient":
+      canvasDOM.style.backgroundImage =
+        "radial-gradient(circle, rgba(255,255,255,.9) 0%, rgba(0,0,0,0) 100%)";
+    case "random-solid":
+    case "random-gradient":
+      canvasDOM.style.backgroundColor = config.backgroundColor;
+      break;
+  }
+
+  // TEAPOT
 
   const material =
     texture === "gradient"
@@ -51,22 +59,6 @@ export default function createPiece(
   teapot.scale.y = config.scaleY;
   teapot.scale.z = config.scaleZ;
   scene.add(teapot);
-
-  // Create BG
-  // const bg_material = new THREE.MeshStandardMaterial({
-  //   color: 0xfefefe,
-  // });
-  // const bg_geometry = new THREE.PlaneGeometry(1000, 1000);
-  // const bg = new THREE.Mesh(bg_geometry, bg_material);
-  // bg.position.z = -100;
-
-  // const spotLight = new THREE.SpotLight(0xffffff);
-  // spotLight.target = bg;
-  // spotLight.intensity = 1.2;
-  // spotLight.decay = 0.1;
-  // spotLight.position.set(0, 0, -40);
-
-  // scene.add(bg, spotLight, spotLight.target);
 
   // Render scene
   function animate() {
