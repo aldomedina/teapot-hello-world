@@ -7,14 +7,14 @@ import {
   TextureLoader,
   Texture,
 } from "three";
-import { TConfig, TSettings } from "../../types";
+import { TConfig } from "../../types";
 import createLinesTexture from "./createLinesTexture";
 import fragmentShader from "./fragmentShader";
 import vertexShader from "./vertexShader";
 
 export default function createColorlinesMaterial(
   config: TConfig,
-  stripes: number
+  texture: Texture
 ) {
   const material = new ShaderMaterial({
     vertexShader,
@@ -22,7 +22,7 @@ export default function createColorlinesMaterial(
     side: DoubleSide,
     uniforms: {
       uTexture: {
-        value: createLinesTexture(config.palette, stripes),
+        value: texture,
       },
       uTime: { value: 0 },
       uSpeed: { value: 0.2 },

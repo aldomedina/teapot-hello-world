@@ -1,6 +1,6 @@
-import { TextureLoader } from "three";
+import { ShaderMaterial, TextureLoader } from "three";
 
-export default function createLinesTexture(
+export default async function createLinesTexture(
   palette: string[],
   numberOfStripes: number
 ) {
@@ -23,6 +23,5 @@ export default function createLinesTexture(
     ctx.stroke();
   }
   const url = canvas.toDataURL();
-  const texture = new TextureLoader().load(url);
-  return texture;
+  return url;
 }
